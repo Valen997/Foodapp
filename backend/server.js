@@ -10,8 +10,8 @@ connectDb()
 app.use(express.json())
 app.use(cors({
   origin: [
-    "https://foodapp-fawn-tau.vercel.app",
-    "http://localhost:5173"
+    "http://localhost:5174",
+    "https://foodapp-fawn-tau.vercel.app"
   ],
   credentials: true
 }))
