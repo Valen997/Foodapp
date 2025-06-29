@@ -7,6 +7,7 @@ import axios from 'axios'
 import  AddFoodRecipe  from './pages/AddFoodRecipe'
 import EditRecipe from './pages/EditRecipe'
 import RecipeDetails from './pages/RecipeDetails'
+import ErrorBoundary from './components/ErrorBoundary'
 
 const API_URL = import.meta.env.VITE_APP_API_URL || 'http://localhost:5000';
 
@@ -42,13 +43,13 @@ const getRecipe=async({params})=>{
 }
 
 const router=createBrowserRouter([
-  {path:"/",element:<MainNavigation/>,children:[
-    {path:"/",element:<Home/>,loader:getAllRecipes},
-    {path:"/myRecipe",element:<Home/>,loader:getMyRecipes},
-    {path:"/favRecipe",element:<Home/>,loader:getFavRecipes},
-    {path:"/addRecipe",element:<AddFoodRecipe/>},
-    {path:"/editRecipe/:id",element:<EditRecipe/>},
-    {path:"/recipe/:id",element:<RecipeDetails/>,loader:getRecipe}
+  {path:"/",element:<MainNavigation/>,errorElement:<ErrorBoundary/>,children:[
+    {path:"/",element:<Home/>,loader:getAllRecipes,errorElement:<ErrorBoundary/>},
+    {path:"/myRecipe",element:<Home/>,loader:getMyRecipes,errorElement:<ErrorBoundary/>},
+    {path:"/favRecipe",element:<Home/>,loader:getFavRecipes,errorElement:<ErrorBoundary/>},
+    {path:"/addRecipe",element:<AddFoodRecipe/>,errorElement:<ErrorBoundary/>},
+    {path:"/editRecipe/:id",element:<EditRecipe/>,errorElement:<ErrorBoundary/>},
+    {path:"/recipe/:id",element:<RecipeDetails/>,loader:getRecipe,errorElement:<ErrorBoundary/>}
   ]}
  
 ])
