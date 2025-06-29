@@ -20,6 +20,10 @@ app.use(cors({
 }))
 app.use(express.static("public"))
 
+app.get('/cors-test', (req, res) => {
+  res.json({ message: 'CORS test success' });
+});
+
 app.use("/",require("./routes/user"))
 app.use("/recipe",require("./routes/recipe"))
 
