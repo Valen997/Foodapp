@@ -6,7 +6,10 @@ const cors=require("cors")
 
 const PORT=process.env.PORT || 3000
 connectDb()
-
+const allowedOrigins = [
+  "http://localhost:5174",
+    "https://foodapp-fawn-tau.vercel.app"
+];
 app.use(express.json())
 app.use(cors({
   origin: [
