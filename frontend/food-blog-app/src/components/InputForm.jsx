@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
+const API_URL = import.meta.env.VITE_APP_API_URL || 'http://localhost:5000';
+
 export default function InputForm({setIsOpen}) {
    const [email,setEmail]=useState("")
    const [password,setPassword]=useState("")
@@ -10,7 +12,7 @@ export default function InputForm({setIsOpen}) {
   const handleOnSubmit=async(e)=>{
     e.preventDefault()
     let endpoint=(isSignUp) ? "signUp" : "login"
-    await axios.post(`http://localhost:5000/${endpoint}`,{email,password})
+    await axios.post(`${API_URL}/${endpoint}`,{email,password})
     .then((res)=>{
         localStorage.setItem("token",res.data.token)
         localStorage.setItem("user",JSON.stringify(res.data.user))
